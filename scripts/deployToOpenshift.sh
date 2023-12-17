@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-MANIFESTS="/root/acmeair-manifests"
+MANIFESTS="/root/acmeair-mainservice-java/acmeair-manifests"
 CLUSTER_DOMAIN=`oc -n openshift-ingress-operator get ingresscontrollers -o jsonpath='{.items[].status.domain}'`
 ROUTE_HOST="acmeair.${CLUSTER_DOMAIN}"
 
@@ -25,24 +25,6 @@ mkdir -p ${MANIFESTS}
 cd ${MANIFESTS}
 echo "Installing Acme-Air in acme-air namespace ..."
 # Main service
-curl -o acmeair-mainservice-route.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-mainservice-java/ppc64le/manifests-openshift/acmeair-mainservice-route.yaml
-curl -o deploy-acmeair-mainservice-java.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-mainservice-java/ppc64le/manifests-openshift/deploy-acmeair-mainservice-java.yaml
-
-# Auth service
-curl -o acmeair-authservice-route.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-authservice-java/ppc64le/manifests-openshift/acmeair-authservice-route.yaml
-curl -o deploy-acmeair-authservice-java.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-authservice-java/ppc64le/manifests-openshift/deploy-acmeair-authservice-java.yaml
-
-# Customer service
-curl -o acmeair-customerservice-route.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-customerservice-java/ppc64le/manifests-openshift/acmeair-customerservice-route.yaml
-curl -o deploy-acmeair-customerservice-java.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-customerservice-java/ppc64le/manifests-openshift/deploy-acmeair-customerservice-java.yaml
-
-# Flight service
-curl -o acmeair-flightservice-route.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-flightservice-java/ppc64le/manifests-openshift/acmeair-flightservice-route.yaml
-curl -o deploy-acmeair-flightservice-java.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-flightservice-java/ppc64le/manifests-openshift/deploy-acmeair-flightservice-java.yaml
-
-# Booking service
-curl -o acmeair-bookingservice-route.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-bookingservice-java/ppc64le/manifests-openshift/acmeair-bookingservice-route.yaml
-curl -o deploy-acmeair-bookingservice-java.yaml https://raw.githubusercontent.com/power-dev-env/acmeair-bookingservice-java/ppc64le/manifests-openshift/deploy-acmeair-bookingservice-java.yaml
 
 # Update hostname in routes manifest
 echo "Patch hostname for routes"
